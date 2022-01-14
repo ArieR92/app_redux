@@ -15,51 +15,6 @@ import reducer from './reducers/tiendaReducer';
 
 
 const App = () => {
-
-
-const [carrito, cambiarCarrito] = useState([]);
-// si el carrito no tiene elementos entonces agregamos uno
-const agregarProductoAlCarrito = (idAlProductoAAgregar, nombre) => {
-  if(carrito.length === 0 ){ 
-    cambiarCarrito([{id: idAlProductoAAgregar, nombre: nombre, cantidad: 1}]);
-  } else{
-
-    const nuevoCarrito = [...carrito];
-
-//comprobamos si el carrito ya tiene el id del producto que queremos agregar
-const yaEstaEnCarrito = nuevoCarrito.filter((productoDeCarrito)=>{
-  return productoDeCarrito.id === idAlProductoAAgregar
-}).length >0;
-
-//si ya tiene el producto entonces lo tenemos que actualizar
-if(yaEstaEnCarrito){
-//para ello tenemos que buscarlo, obtener su posicion en el arreglo
-//y en base a su posicion ya actualizamos el valor
-    nuevoCarrito.forEach((productoDeCarrito, index) => {
-        if (productoDeCarrito.id === idAlProductoAAgregar){
-      const cantidad = nuevoCarrito[index].cantidad;
-      nuevoCarrito[index] = {id: idAlProductoAAgregar, nombre:nombre, cantidad:cantidad +1 }
-        }
-
-    });
-
-}
-// de otra forma agregamos el producto al arreglo
-else {
-   nuevoCarrito.push(
-  { 
-     id: idAlProductoAAgregar,
-     nombre: nombre,
-     cantidad: 1
-  });
-}
-//por ultimo actualizamos el carrito
-cambiarCarrito(nuevoCarrito);
-
-
-
-  }
-}
 const store = createStore(reducer);
 console.log(store.getState());
 
@@ -77,7 +32,7 @@ console.log(store.getState());
          <Routes>
             <Route path="/" element = {<Inicio />}> </Route>
             <Route path="/blog" element = {<Blog/>}> </Route>
-            <Route path="/tienda" element = {<Tienda/>} > </Route>
+            <Route path="/tienda" element = {<Tienda/>}> </Route>
             <Route element = {<Error404/>}> </Route>
          </Routes>
 

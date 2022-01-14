@@ -66,11 +66,17 @@ const mapStateToProps = (estado) => {
         productos: estado.productos
 
     }
+}    
 
 const mapDispatchToProps = (dispatch) => {
     return {
         agregarProductoAlCarrito: (idAlProductoAAgregar,nombre) => {
-            dispatch({type: 'AGREGAR_PRODUCTO_AL_CARRITO'});
+            dispatch(
+                {
+                    type: 'AGREGAR_PRODUCTO_AL_CARRITO',
+                    idAlProductoAAgregar: idAlProductoAAgregar,
+                    nombre: nombre
+                });
 
         }
     }
@@ -78,5 +84,5 @@ const mapDispatchToProps = (dispatch) => {
 } 
 
 
-}
+
 export default connect(mapStateToProps, mapDispatchToProps)(Productos) ;
